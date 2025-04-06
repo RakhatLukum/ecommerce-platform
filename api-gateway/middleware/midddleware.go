@@ -7,7 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Middleware для логгирования
 func LoggingMiddleware(c *gin.Context) {
 	start := time.Now()
 	c.Next()
@@ -15,7 +14,6 @@ func LoggingMiddleware(c *gin.Context) {
 	log.Printf("Request %s %s took %v", c.Request.Method, c.Request.URL, duration)
 }
 
-// Простая авторизация
 func AuthMiddleware(c *gin.Context) {
 	authHeader := c.GetHeader("Authorization")
 	if authHeader == "" || authHeader != "Bearer token123" {

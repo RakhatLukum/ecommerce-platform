@@ -8,7 +8,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Регистрация маршрутов для заказов
 func RegisterRoutes(r *gin.Engine, svc *service.OrderService) {
 	r.POST("/orders", createOrder(svc))
 	r.GET("/orders/:id", getOrder(svc))
@@ -16,7 +15,6 @@ func RegisterRoutes(r *gin.Engine, svc *service.OrderService) {
 	r.GET("/orders", listOrders(svc))
 }
 
-// Создание нового заказа
 func createOrder(svc *service.OrderService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var o model.Order
@@ -29,7 +27,6 @@ func createOrder(svc *service.OrderService) gin.HandlerFunc {
 	}
 }
 
-// Получение заказа по ID
 func getOrder(svc *service.OrderService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id := c.Param("id")
@@ -42,7 +39,6 @@ func getOrder(svc *service.OrderService) gin.HandlerFunc {
 	}
 }
 
-// Обновление статуса заказа
 func updateOrder(svc *service.OrderService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id := c.Param("id")
@@ -56,7 +52,6 @@ func updateOrder(svc *service.OrderService) gin.HandlerFunc {
 	}
 }
 
-// Список всех заказов
 func listOrders(svc *service.OrderService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		orders := svc.List()

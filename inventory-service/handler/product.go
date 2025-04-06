@@ -8,7 +8,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Регистрация маршрутов для работы с продуктами
 func RegisterRoutes(r *gin.Engine, svc *service.InventoryService) {
 	r.POST("/products", createProduct(svc))
 	r.GET("/products/:id", getProduct(svc))
@@ -17,7 +16,6 @@ func RegisterRoutes(r *gin.Engine, svc *service.InventoryService) {
 	r.GET("/products", listProducts(svc))
 }
 
-// Создание нового продукта
 func createProduct(svc *service.InventoryService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var p model.Product
@@ -30,7 +28,6 @@ func createProduct(svc *service.InventoryService) gin.HandlerFunc {
 	}
 }
 
-// Получение продукта по ID
 func getProduct(svc *service.InventoryService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id := c.Param("id")
@@ -43,7 +40,6 @@ func getProduct(svc *service.InventoryService) gin.HandlerFunc {
 	}
 }
 
-// Обновление данных о продукте
 func updateProduct(svc *service.InventoryService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id := c.Param("id")
@@ -57,7 +53,6 @@ func updateProduct(svc *service.InventoryService) gin.HandlerFunc {
 	}
 }
 
-// Удаление продукта
 func deleteProduct(svc *service.InventoryService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id := c.Param("id")
@@ -66,7 +61,6 @@ func deleteProduct(svc *service.InventoryService) gin.HandlerFunc {
 	}
 }
 
-// Список всех продуктов
 func listProducts(svc *service.InventoryService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		products := svc.List()
